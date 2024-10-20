@@ -1,0 +1,14 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=0
+      - PGID=0
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+    volumes:
+      - /home/remi/codes/config:/config
+      - /home/remi/codeserver/scripts:/custom-cont-init.d:ro
+    ports:
+      - 8443:8443
+    restart: unless-stopped
