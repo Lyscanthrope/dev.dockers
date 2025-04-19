@@ -11,4 +11,16 @@ services:
       - /home/remi/codeserver/scripts:/custom-cont-init.d:ro
     ports:
       - 8443:8443
+      - 8080:8080
     restart: unless-stopped
+  openvscode-server:
+    image: lscr.io/linuxserver/openvscode-server:latest
+    container_name: openvscode-server
+    environment:
+      - PUID=0
+      - PGID=0
+    volumes:
+      - /home/remi/codes/config:/config
+      - /home/remi/codeserver/scripts:/custom-cont-init.d:ro
+    ports:
+      - 3001:3000
